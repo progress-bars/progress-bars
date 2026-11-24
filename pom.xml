@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.msscn</groupId>
+    <artifactId>progress-bars</artifactId>
+    <version>0.1</version>
+    <packaging>jar</packaging>
+
+    <name>progress-bars</name>
+    <description>Lightweight, zero-dependency progress bars for console, logging, streaming and API usage.</description>
+    <url>https://msscn.cn</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>msscn</id>
+            <name>msscn</name>
+        </developer>
+    </developers>
+    <!-- SCM is REQUIRED by Maven Central. -->
+    <scm>
+        <connection>scm:git:https://github.com/progress-bars/progress-bars.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/progress-bars/progress-bars.git</developerConnection>
+        <url>https://github.com/progress-bars/progress-bars</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- source/target instead of release: the project can also be built with JDK 8 itself -->
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.testSource>8</maven.compiler.testSource>
+        <maven.compiler.testTarget>8</maven.compiler.testTarget>
+        <!-- Used only by the "internal" profile (private Nexus/Artifactory).
+             Override on the command line, e.g. -Ddeploy.repo.url=https://nexus.example.com/repository/maven-releases/ -->
+        <deploy.repo.id>internal</deploy.repo.id>
+        <deploy.repo.url>http://localhost:8081/repository/maven-releases/</deploy.repo.url>
+        <deploy.snapshot.repo.url>http://localhost:8081/repository/maven-snapshots/</deploy.snapshot.repo.url>
+    </properties>
+
+    <!-- Used by the "internal" profile only. Maven Central uses central-publishing-maven-plugin instead. -->
+    <distributionManagement>
+        <repository>
+            <id>${deploy.repo.id}</id>
+            <name>Release Repository</name>
+            <url>${deploy.repo.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>${deploy.repo.id}</id>
+            <name>Snapshot Repository</name>
+            <url>${deploy.snapshot.repo.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+        <!-- Intentionally empty: JDK 8 API only, works on JDK 8 ~ 28 without extra downloads. -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>cn.msscn.progress.demo.ProgressBarDemo</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Maven Central via the new Central Portal (OSSRH shut down 2025-06-30).
+             Requires: a verified namespace for cn.msscn on central.sonatype.com,
+             a user token in ~/.m2/settings.xml under server id "central", and a GPG key. -->
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <configuration>
+                            <source>8</source>
+                            <doclint>none</doclint>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Replaces the old nexus-staging-maven-plugin / OSSRH deploy URL.
+                         Set autoPublish=true to publish without the manual confirmation step. -->
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Private Nexus/Artifactory without GPG signing: mvn -Pinternal clean deploy -->
+        <profile>
+            <id>internal</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>3.1.1</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

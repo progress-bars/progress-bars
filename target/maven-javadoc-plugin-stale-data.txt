@@ -1,0 +1,46 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'8'
+-sourcepath
+'C:/Users/zt/WorkBuddy/2026-11-23-17-53-30/progress-bars/src/main/java;C:/Users/zt/WorkBuddy/2026-11-23-17-53-30/progress-bars/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/zt/WorkBuddy/2026-11-23-17-53-30/progress-bars/target/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'progress-bars 0.1 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/zt/WorkBuddy/2026-11-23-17-53-30/progress-bars/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'progress-bars 0.1 API'
+cn.msscn.progress
+cn.msscn.progress.demo
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\src\main\java = 1795433370776
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\generated-sources\annotations = 1795441269122
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\allclasses-index.html = 1795510755150
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\allpackages-index.html = 1795510755156
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\constant-values.html = 1795510754892
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\element-list = 1795510754853
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\help-doc.html = 1795510755227
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\index-all.html = 1795510755204
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\index.html = 1795510755125
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\member-search-index.js = 1795510755171
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\module-search-index.js = 1795510755159
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\overview-summary.html = 1795510755213
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\overview-tree.html = 1795510755120
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\package-search-index.js = 1795510755163
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\search.html = 1795510755209
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\tag-search-index.js = 1795510755174
+C:\Users\zt\WorkBuddy\2026-11-23-17-53-30\progress-bars\target\apidocs\type-search-index.js = 1795510755166
