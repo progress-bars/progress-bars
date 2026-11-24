@@ -45,13 +45,13 @@ Maven coordinates (version `0.1`):
 
 ```xml
 <dependency>
-  <groupId>cn.msscn</groupId>
+  <groupId>io.github.msscn-cn</groupId>
   <artifactId>progress-bars</artifactId>
   <version>0.1</version>
 </dependency>
 ```
 
-The Java package is `cn.msscn.progress`. Build from source with:
+The Java package is `cn.msscn.progress` (the groupId may use a different namespace than the package name). Build from source with:
 
 ```bash
 mvn -q clean package

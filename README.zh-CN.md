@@ -45,13 +45,13 @@ Maven 坐标（版本 `0.1`）：
 
 ```xml
 <dependency>
-  <groupId>cn.msscn</groupId>
+  <groupId>io.github.msscn-cn</groupId>
   <artifactId>progress-bars</artifactId>
   <version>0.1</version>
 </dependency>
 ```
 
-Java 包名为 `cn.msscn.progress`。从源码构建：
+Java 包名为 `cn.msscn.progress`（groupId 可以使用与包名不同的命名空间）。从源码构建：
 
 ```bash
 mvn -q clean package
